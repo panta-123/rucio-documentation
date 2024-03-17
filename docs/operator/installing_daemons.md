@@ -70,6 +70,44 @@ docker run --name=rucio-judge-cleaner \
   -e RUCIO_ENABLE_LOGS=True \
   rucio/rucio-daemons
 ```
+## Daemon Table.
+|  Daemon |  Type  | Functionality  |
+|---------|--------|----------------|
+| abacus-account | Accounting  |  Updtae Account Counter |
+| abacus-collection-replica  |  Accounting | update collection replica  |
+| abacus-rse |  Accounting | update RSE counters  |
+|atropes||Gets a list of rules which have an eol_at expired and delete them.|
+|automatix||Injects random generated files to an RSE. It is used to continuosly check that an RSE is reachable and operating as spected.|
+|bb8| |Re-balance data between RSEs.|
+|cache-consumer|| Retrieve rucio cache operation information to synchronize rucio catalog.|
+| conveyor-preparer|Transfer|Required for many advanced usages, like multiple transfertools together. required to be able to use throttler|
+| conveyor-throttler|Transfer|Throttle request submissions to/from an RSE|
+| conveyor-stager | Transfer | Manage stagein file transfers for tape archive)|
+| conveyor-submitter|Transfer|Manage File tranfer |
+| conveyor-receiver|Transfer|Check & Update status of tranfer using events from queueing system|
+| conveyor-poller|Transfer|Polls the external transfertool for the status of pending transfers and marks |
+| conveyor-finisher|Transfer| Acts on successful or failed transfers|
+|oauth-manager|Authentication|deletion and refreshing relevant tokens | 
+|transmogrifier|Replication|Create Replication rule according to Subscription|
+|judge-cleaner|Replication |Clean expired replication rules|
+|judge-evaluator|Replication |Re-evaluate and execute replication rules|
+|judge-injector|Replication |Asynchronously create replication rules|
+|judge-repairer|Replication |repair stuck replication rules.|
+|kronos-dataset|Trace||
+|kronos-file|Trace||
+|hermes|Monitoring|Gets messages and sends them to external services (influxDB, ES, ActiveMQ).|
+|dark-reaper|Deletion|manage quarantined file deletion|
+|reaper|Deletion|manage file deletion|
+|rucio-follower|||
+|rsedecommissioner||Clears RSEs to be decommissioning|
+|storage-consistency-actions|Deletion| Delete dark files, and re-subscribe the missing ones|
+|suspicious-replica-recoverer||Deals with suspicious replicas based |
+|undertaker|Deletion|manage expired did|
+
+
+
+
+
 
 ## Environment Variables
 
